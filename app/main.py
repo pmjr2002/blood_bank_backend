@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from routers import auth, hospitals, staff, requests, donors, donations, repository
+from app.routers import auth, hospitals, staff, requests, donors, donations, repository
 import models
 from database import engine
 
