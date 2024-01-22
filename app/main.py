@@ -10,8 +10,8 @@ models_.Base.metadata.create_all(bind=engine)
 app = FastAPI()
 
 origins = [
-    "http://localhost:3000",
-    "https://blood_bank_front18.onrender.com"
+    "*",
+    ".onrender.com"
 ]
 
 app.add_middleware(
