@@ -1,7 +1,7 @@
 from sqlalchemy import Column,Integer, String, Date, ForeignKey, Boolean
 from datetime import datetime, timedelta
 
-from database import Base
+from app.database_ import Base
 
 class Hospital(Base):
     __tablename__ = "hospitals"

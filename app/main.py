@@ -2,10 +2,10 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.routers import auth, hospitals, staff, requests, donors, donations, repository
-import models
-from database import engine
+from . import models_
+from app.database_ import engine
 
-models.Base.metadata.create_all(bind=engine)
+models_.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
