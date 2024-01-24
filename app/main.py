@@ -19,7 +19,7 @@ middleware = [
         )
     ]
 
-app = FastAPI()
+app = FastAPI(middleware=middleware)
 
 app.include_router(auth.router)
 app.include_router(hospitals.router)
