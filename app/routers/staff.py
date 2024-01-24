@@ -32,7 +32,7 @@ def create_staff(request: schemas.StaffIn, db: Session = Depends(get_db)):
     if db_staff:
         staff_id = 'ST' + str(int(db_staff.staff_id[2:]) + 1).zfill(4)
     
-    dob = request.dob.split('/') # yyyy/mm/dd
+    dob = str(request.dob).split('-') # yyyy-mm-dd
 
     new_staff = models.Staff(
     staff_id=staff_id, 
