@@ -1,18 +1,13 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.routers import auth, hospitals, staff, requests, donors, donations, repository
-from . import models_
-from app.database_ import engine
+from routers import auth, hospitals, staff, requests, donors, donations, repository
+import models
+from database import engine
 
-models_.Base.metadata.create_all(bind=engine)
+models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
-
-origins = [
-    "*",
-    ".onrender.com"
-]
 
 app.add_middleware(
     CORSMiddleware,
