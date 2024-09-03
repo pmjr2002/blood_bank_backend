@@ -2,19 +2,24 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-# **Update database URL for PostgreSQL**
-SQLALCHEMY_DATABASE_URL = "postgresql://avnadmin:AVNS_GxNqi95MDuVFYgFEyev@blood-db-wic-f.a.aivencloud.com:15185/defaultdb"
+# Replace these values with your actual Aiven credentials
+USERNAME = "avnadmin"
+PASSWORD = "AVNS_N0-Z5xRbW2mOOoW9Kg7"
+HOST = "mysql-bbms-blood-bank-management-system.h.aivencloud.com"
+PORT = "26445"
+DATABASE = "defaultdb"
 
-# **Create engine for PostgreSQL**
-engine = create_engine(SQLALCHEMY_DATABASE_URL)  # Remove "connect_args" for PostgreSQL
+# Use the mariadb connector
+SQLALCHEMY_DATABASE_URL = f"mysql+mysqlconnector://{USERNAME}:{PASSWORD}@{HOST}:{PORT}/{DATABASE}"
 
-# **Create session factory**
+engine = create_engine(
+    SQLALCHEMY_DATABASE_URL
+)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-# **Base for models remains unchanged**
 Base = declarative_base()
 
-# **Dependency function remains unchanged**
+# Dependency
 def get_db():
     db = SessionLocal()
     try:
