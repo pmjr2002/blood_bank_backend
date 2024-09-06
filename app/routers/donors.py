@@ -10,19 +10,26 @@ router = APIRouter(
     tags=['Donors'])
 
 @router.get('/', response_model=list[schemas.DonorOut])
-def get_donors_by_address_and_blood_group(locality:str = '',blood_group: str = '',db: Session = Depends(get_db)):
+def get_donors_by_address_and_blood_group(locality:str = '',blood_group: str = '',name: str = '', db: Session = Depends(get_db)):
     if(blood_group != '' and blood_group[-1] == 'P'):
         blood_group = blood_group[:-1] + '+'
-    if locality == '' and blood_group == '':
+    if locality == '' and blood_group == '' and name == '':
         db_donors = db.query(models.Donor).all()
-    elif locality == '':
+    elif locality == '' and name == '':
         db_donors = db.query(models.Donor).filter(models.Donor.blood_group == blood_group).all()
-    elif blood_group == '':
+    elif blood_group == '' and name == '':
         address = locality + ', Mysuru'
         db_donors = db.query(models.Donor).filter(models.Donor.address == address).all()
-    else:
+    elif locality == '' and blood_group == '':
+        db_donors = db.query(models.Donor).filter(models.Donor.name == name).all()
+    elif name == '':
         address = locality + ', Mysuru'
         db_donors = db.query(models.Donor).filter(models.Donor.address == address, models.Donor.blood_group == blood_group).all()
+    elif locality == '':
+        db_donors = db.query(models.Donor).filter(models.Donor.blood_group == blood_group, models.Donor.name == name).all()
+    elif blood_group == '':
+        address = locality + ', Mysuru'
+        db_donors = db.query(models.Donor).filter(models.Donor.address == address, models.Donor.name == name).all()
     
     return db_donors
 
