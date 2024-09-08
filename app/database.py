@@ -4,14 +4,11 @@ from sqlalchemy.orm import sessionmaker
 import os
 
 # Replace these values with your actual Aiven credentials
-USERNAME = os.getenv('USERNAME')
-PASSWORD = os.getenv('PASSWORD')
-HOST = os.getenv('HOST')
-PORT = os.getenv('PORT')
-DATABASE = os.getenv('DATABASE')
 
+
+DATABASE_URL = os.getenv('SQLALCHEMY_DATABASE_URL')
 # Use the mariadb connector
-SQLALCHEMY_DATABASE_URL = f"mysql+mysqlconnector://{USERNAME}:{PASSWORD}@{HOST}:{PORT}/{DATABASE}"
+SQLALCHEMY_DATABASE_URL = f"{DATABASE_URL}"
 
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL
