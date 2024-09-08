@@ -3,11 +3,11 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 # Replace these values with your actual Aiven credentials
-USERNAME = "avnadmin"
-PASSWORD = "AVNS_N0-Z5xRbW2mOOoW9Kg7"
-HOST = "mysql-bbms-blood-bank-management-system.h.aivencloud.com"
-PORT = "26445"
-DATABASE = "defaultdb"
+USERNAME = os.getenv('USERNAME')
+PASSWORD = os.getenv('PASSWORD')
+HOST = os.getenv('HOST')
+PORT = os.getenv('PORT')
+DATABASE = os.getenv('DATABASE')
 
 # Use the mariadb connector
 SQLALCHEMY_DATABASE_URL = f"mysql+mysqlconnector://{USERNAME}:{PASSWORD}@{HOST}:{PORT}/{DATABASE}"
