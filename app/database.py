@@ -6,9 +6,9 @@ import os
 # Replace these values with your actual Aiven credentials
 
 
-DATABASE_URL = os.getenv('SQLALCHEMY_DATABASE_URL')
+URL = os.getenv('DATABASE_URL')
 # Use the mariadb connector
-SQLALCHEMY_DATABASE_URL = f"{DATABASE_URL}"
+SQLALCHEMY_DATABASE_URL = f"{URL}"
 
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL

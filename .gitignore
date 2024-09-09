@@ -1,3 +1,4 @@
 bloodbank/
 **/__pycache__
 venv
+.env
